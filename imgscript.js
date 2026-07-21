@@ -9,7 +9,7 @@ contextMessage.style =
     "background-color: #333; color: #fff; border: none; width: 100%; height: 100%; border-radius: 7.5px; cursor: pointer;";
 
 const customIframe = document.createElement("iframe");
-customIframe.src = "http://localhost:5500/external.html";
+customIframe.src = "https://sileniri.github.io/IMG/external.html";
 customIframe.style = "width:0;height:0;border:none;position:absolute;";
 customIframe.id = "customIframe";
 
@@ -42,7 +42,7 @@ document.addEventListener("contextmenu", (e) => {
 function sendData(data) {
     const iframeEl = document.querySelector("#customIframe");
 
-    iframeEl.contentWindow.postMessage(JSON.stringify(data), "http://localhost:5500");
+    iframeEl.contentWindow.postMessage(JSON.stringify(data), "https://sileniri.github.io/IMG");
 }
 
 document.addEventListener("click", (e) => {
