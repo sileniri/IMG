@@ -5,9 +5,12 @@
             window.addEventListener("message", (message) => {
                 if (message.origin) {
                     const data = JSON.parse(message.data);
-                    const {userId} = data;
-                    if (userId) {
-                        localStorage.setItem("userId", userId);
+                    let imageArr = localStorage.getItem("images") || [];
+                    imageArr.push(data);
+                    console.log(imageArr);
+
+                    if (data) {
+                        localStorage.setItem("images", imageArr);
                     }
                 }
             });
