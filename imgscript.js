@@ -40,7 +40,7 @@ document.addEventListener("contextmenu", (e) => {
 });
 
 function sendData(data) {
-    const iframeEl = document.querySelector("customIframe");
+    const iframeEl = document.querySelector("#customIframe");
 
     iframeEl.contentWindow.postMessage(JSON.stringify(data), "http://localhost:5500");
 }
