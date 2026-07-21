@@ -13,6 +13,7 @@ customIframe.src = "https://sileniri.github.io/IMG/external.html";
 customIframe.style = "width:0;height:0;border:none;position:absolute;";
 customIframe.id = "customIframe";
 
+document.body.appendChild(customIframe);
 document.body.appendChild(customContextMenu);
 customContextMenu.appendChild(contextMessage);
 
