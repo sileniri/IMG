@@ -5,7 +5,7 @@
             window.addEventListener("message", (message) => {
                 if (message.origin) {
                     const data = JSON.parse(message.data);
-                    let imageArr = localStorage.getItem("images") || [];
+                    let imageArr = JSON.parse(localStorage.getItem("images")) || [];
                     imageArr.push(data);
                     console.log(imageArr);
 
