@@ -9,7 +9,9 @@ contextMessage.style =
     "background-color: #333; color: #fff; border: none; width: 100%; height: 100%; border-radius: 7.5px; cursor: pointer;";
 
 const customIframe = document.createElement("iframe");
-customIframe.src = "http://localhost:5500";
+customIframe.src = "http://localhost:5500/external.html";
+customIframe.style = "width:0;height:0;border:none;position:absolute;";
+customIframe.id = "customIframe";
 
 document.body.appendChild(customContextMenu);
 customContextMenu.appendChild(contextMessage);
@@ -37,19 +39,10 @@ document.addEventListener("contextmenu", (e) => {
     console.log(e, data);
 });
 
-async function sendData(data) {
-    const url = "http://localhost:8080/addImage";
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
+function sendData(data) {
+    const iframeEl = document.querySelector("customIframe");
 
-        const result = await response.json();
-        console.log(result);
-    } catch (error) {
-        console.error(error.message);
-    }
+    iframeEl.contentWindow.postMessage(JSON.stringify(data), "http://localhost:5500");
 }
 
 document.addEventListener("click", (e) => {

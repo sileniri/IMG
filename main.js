@@ -8,7 +8,6 @@ loadImages();
 function loadImages() {
     console.log("loading...");
     try {
-        document.removeChild(form);
         imageArray = JSON.parse(localStorage.getItem("images"));
         imageArray.forEach((image) => {
             const imageSrc = JSON.parse(image);
