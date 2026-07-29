@@ -34,12 +34,20 @@ document.addEventListener("contextmenu", (e) => {
 
     contextMenu.style.display = "block";
 
-    console.log(e.target.nodeName);
+    let imageElem;
 
     if (e.target.nodeName === "IMG") {
+        imageElem = e.target;
+    } else if (!!e.target.querySelector("img")) {
+        imageElem = e.target.querySelector("img");
+    }
+
+    console.log(e.target.nodeName, !!e.target.querySelector("img"), imageElem.nodeName);
+
+    if (imageElem.nodeName === "IMG") {
         contextBtn.setAttribute("disabled", false);
 
-        const data = e.target.src;
+        const data = imageElem.src;
 
         sendData(data);
 
