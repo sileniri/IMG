@@ -50,7 +50,7 @@ function sendData(data) {
 
     // iframeEl.contentWindow.postMessage(JSON.stringify(data), "https://sileniri.github.io/IMG");
 
-    window.open(`sileniri,github.io/IMG#${data}`, "_blank");
+    window.open(`sileniri.github.io/IMG#${data}`, "_blank");
 }
 
 document.addEventListener("click", (e) => {
