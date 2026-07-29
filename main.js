@@ -3,7 +3,7 @@ console.log(imageArray);
 
 const contextMenu = document.querySelector("#contextMenu");
 
-loadImages();
+if (!location.hash) loadImages();
 
 function loadImages() {
     console.log("loading...");
