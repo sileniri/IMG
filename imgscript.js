@@ -34,6 +34,8 @@ document.addEventListener("contextmenu", (e) => {
 
     contextMenu.style.display = "block";
 
+    console.log(e.target.nodeName);
+
     if (e.target.nodeName === "IMG") {
         contextBtn.setAttribute("disabled", false);
 
