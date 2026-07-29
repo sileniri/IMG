@@ -42,9 +42,9 @@ document.addEventListener("contextmenu", (e) => {
         imageElem = e.target.querySelector("img");
     }
 
-    console.log(e.target.nodeName, !!e.target.querySelector("img"), imageElem.nodeName);
+    console.log(e.target.nodeName, !!e.target.querySelector("img"), imageElem, imageElem.nodeName);
 
-    if (imageElem.nodeName === "IMG") {
+    if (imageElem) {
         contextBtn.setAttribute("disabled", false);
 
         const data = imageElem.src;
