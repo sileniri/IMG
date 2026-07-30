@@ -14,6 +14,8 @@ if (!location.hash) {
     imgs.push(location.hash.substring(1));
     console.log(imgs);
     localStorage.setItem("images", JSON.stringify(imgs));
+
+    window.open("", "_self").close();
 }
 
 function loadImages() {
