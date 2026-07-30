@@ -1,6 +1,3 @@
-let imageArray = JSON.parse(localStorage.getItem("images"));
-console.log(imageArray);
-
 const contextMenu = document.querySelector("#contextMenu");
 
 if (!location.hash) {
