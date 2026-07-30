@@ -3,7 +3,16 @@ console.log(imageArray);
 
 const contextMenu = document.querySelector("#contextMenu");
 
-if (!location.hash) loadImages();
+if (!location.hash) {
+    loadImages();
+} else {
+    let imgs = localStorage.getItem("images") || [];
+    if (!Array.isArray(imgs)) {
+        imgs = JSON.parse("imgs");
+    }
+    imgs.push(locattion.hash);
+    localStorage.setItem("images", imgs);
+}
 
 function loadImages() {
     console.log("loading...");

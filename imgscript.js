@@ -47,7 +47,11 @@ document.addEventListener("contextmenu", (e) => {
     if (imageElem) {
         contextBtn.setAttribute("disabled", false);
 
-        const data = imageElem.src;
+        let data = imageElem.src;
+
+        data = data.replaceAll("wimg.", "www.");
+        data = data.replaceAll("template", "sample");
+        data = data.replaceAll("preview.", "i.");
 
         sendData(data);
 
@@ -60,7 +64,7 @@ function sendData(data) {
 
     // iframeEl.contentWindow.postMessage(JSON.stringify(data), "https://sileniri.github.io/IMG");
 
-    window.open(`sileniri.github.io/IMG#${data}`, "_blank");
+    window.open(`https://sileniri.github.io/IMG#${data}`, "_blank");
 }
 
 document.addEventListener("click", (e) => {
