@@ -85,7 +85,7 @@ contextMenuBtns.forEach((btn) => {
     });
 });
 function handleMotion(evt) {
-    const shakeSensitivity = 3;
+    const shakeSensitivity = 15;
 
     const x = evt.accelerationIncludingGravity.x;
     const y = evt.accelerationIncludingGravity.y;
@@ -93,7 +93,6 @@ function handleMotion(evt) {
 
     const acceleration = Math.sqrt(x * x + y * y + z * z);
 
-    alert(`Movment: ${acceleration}`);
     if (acceleration > shakeSensitivity) {
         console.log("SHAKE!!!");
         document.body.classList.add("hidden");
