@@ -49,9 +49,14 @@ document.addEventListener("contextmenu", (e) => {
 
         let data = imageElem.src;
 
-        data = data.replaceAll("wimg.", "");
-        data = data.replaceAll("thumbnail", "sample");
-        data = data.replaceAll("/samples", "//samples");
+        if (data.includes(".jpg")) {
+            data = data.replaceAll("wimg.", "");
+            data = data.replaceAll("thumbnail", "sample");
+            data = data.replaceAll("/samples", "//samples");
+        } else {
+            data = data.replaceAll("/thumbnails", "//images");
+            data = data.replaceAll("thumbnail", "");
+        }
         data = data.replaceAll("preview.", "i.");
 
         sendData(data);
