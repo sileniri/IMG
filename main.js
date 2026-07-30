@@ -56,9 +56,9 @@ document.addEventListener("click", (e) => {
 });
 
 contextMenuBtns.forEach((btn) => {
-    console.log(btn.datalist.action);
+    console.log(btn.dataset.action);
     btn.addEventListener("click", (e) => {
-        switch (btn.datalist.action) {
+        switch (btn.dataset.action) {
             case "scrollTop":
                 window.scrollTo(0, 0);
                 break;
