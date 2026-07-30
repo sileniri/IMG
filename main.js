@@ -21,7 +21,7 @@ function loadImages() {
     try {
         imageArray = JSON.parse(localStorage.getItem("images"));
         imageArray.forEach((image) => {
-            const imageSrc = JSON.parse(image);
+            const imageSrc = image;
             const div = document.createElement("div");
             const img = document.createElement("img");
             div.setAttribute("style", `--_img: url(${imageSrc})`);
