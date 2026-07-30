@@ -85,6 +85,7 @@ contextMenuBtns.forEach((btn) => {
     });
 });
 function handleMotion(evt) {
+    alert("movement");
     const shakeSensitivity = 3;
 
     const x = evt.accelerationIncludingGravity.x;
