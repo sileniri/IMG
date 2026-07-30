@@ -6,11 +6,15 @@ const contextMenu = document.querySelector("#contextMenu");
 if (!location.hash) {
     loadImages();
 } else {
+    console.log("URL includes hash");
+
     let imgs = localStorage.getItem("images") || [];
+    console.log(imgs);
     if (!Array.isArray(imgs)) {
-        imgs = JSON.parse("imgs");
+        imgs = JSON.parse(imgs);
     }
     imgs.push(locattion.hash);
+    console.log(imgs);
     localStorage.setItem("images", imgs);
 }
 
