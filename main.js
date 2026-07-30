@@ -12,7 +12,7 @@ if (!location.hash) {
     }
     imgs.push(location.hash.substring(1));
     console.log(imgs);
-    localStorage.setItem("images", imgs);
+    localStorage.setItem("images", JSON.stringify(imgs));
 }
 
 function loadImages() {
