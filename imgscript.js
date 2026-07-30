@@ -49,7 +49,7 @@ document.addEventListener("contextmenu", (e) => {
 
         let data = imageElem.src;
 
-        data = data.replaceAll("wimg.", "www.");
+        data = data.replaceAll("wimg.", "");
         data = data.replaceAll("thumbnail", "sample");
         data = data.replaceAll("/samples", "//samples");
         data = data.replaceAll("preview.", "i.");
