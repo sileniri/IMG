@@ -13,7 +13,7 @@ if (!location.hash) {
     if (!Array.isArray(imgs)) {
         imgs = JSON.parse(imgs);
     }
-    imgs.push(locattion.hash);
+    imgs.push(location.hash);
     console.log(imgs);
     localStorage.setItem("images", imgs);
 }
