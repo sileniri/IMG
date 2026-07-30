@@ -1,6 +1,7 @@
 let imageArray;
 const contextMenu = document.querySelector("#contextMenu");
-const contextMenuBtns = contextMenu.querySelector("a");
+const contextMenuBtns = contextMenu.querySelectorAll("a");
+const imageWrapper = document.querySelector(".imgWrapper");
 
 if (!location.hash) {
     loadImages();
@@ -29,7 +30,7 @@ function loadImages() {
             const img = document.createElement("img");
             div.setAttribute("style", `--_img: url(${imageSrc})`);
             img.src = imageSrc;
-            document.body.appendChild(div);
+            imgWrapper.appendChild(div);
             div.appendChild(img);
         });
     } catch (err) {
