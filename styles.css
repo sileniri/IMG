@@ -23,6 +23,7 @@ div {
 .context-menu {
     position: fixed;
     display: none;
+    z-index: 1000;
 
     &.visible {
         display: block;
@@ -50,4 +51,9 @@ div {
             }
         }
     }
+}
+
+.imgWrapper {
+    max-width: 50rem;
+    margin-inline: auto;
 }
