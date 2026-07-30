@@ -3,7 +3,7 @@ console.log("Connected IMGscript");
 let imageElem = document.querySelector(".flexi img");
 
 if (imageElem) {
-    contextBtn.setAttribute("disabled", false);
+    // contextBtn.setAttribute("disabled", false);
 
     let data = imageElem.src;
 
