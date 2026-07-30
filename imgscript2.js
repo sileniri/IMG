@@ -1,6 +1,6 @@
 console.log("Connected IMGscript");
 
-let imageElem = document.querySelector(".flexi img");
+let imageElem = document.querySelector("img#image");
 
 if (imageElem) {
     // contextBtn.setAttribute("disabled", false);

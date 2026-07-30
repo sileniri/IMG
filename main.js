@@ -1,5 +1,6 @@
 let imageArray;
 const contextMenu = document.querySelector("#contextMenu");
+const contextMenuBtns = contextMenu.querySelector("a");
 
 if (!location.hash) {
     loadImages();
@@ -51,4 +52,31 @@ document.addEventListener("click", (e) => {
     if (e.target.offsetParent != contextMenu) {
         contextMenu.classList.remove("visible");
     }
+});
+
+contextMenuBtns.forEach((btn) => {
+    console.log(btn.datalist.action);
+    btn.addEventListener("click", (e) => {
+        switch (btn.datalist.action) {
+            case "scrollTop":
+                window.scrollTo(0, 0);
+                break;
+            case "fullscreen":
+                if (!document.fullscreenElement) {
+                    document.body.requestFullscreen();
+                } else {
+                    document.exitFullscreen();
+                }
+                document.body;
+                break;
+            case "fixedView":
+                document.body.classList.toggle("fixed");
+                break;
+            case "horiScroll":
+                document.body.classList.toggle("horiScroll");
+                break;
+            default:
+                console.error("Action doesn't exist");
+        }
+    });
 });
