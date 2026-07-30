@@ -1,3 +1,4 @@
+let imageArray;
 const contextMenu = document.querySelector("#contextMenu");
 
 if (!location.hash) {
