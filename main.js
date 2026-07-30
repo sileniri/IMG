@@ -1,7 +1,7 @@
 let imageArray;
 const contextMenu = document.querySelector("#contextMenu");
-const contextMenuBtns = contextMenu.querySelectorAll("a");
-const imageWrapper = document.querySelector(".imgWrapper");
+const contextMenuBtns = [...contextMenu.querySelectorAll("a")];
+const imgWrapper = document.querySelector(".imgWrapper");
 
 if (!location.hash) {
     loadImages();
