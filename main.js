@@ -59,6 +59,9 @@ contextMenuBtns.forEach((btn) => {
     console.log(btn.dataset.action);
     btn.addEventListener("click", (e) => {
         switch (btn.dataset.action) {
+            case "visibility":
+                document.body.classList.toggle("hidden");
+                break;
             case "scrollTop":
                 window.scrollTo(0, 0);
                 break;
@@ -80,4 +83,21 @@ contextMenuBtns.forEach((btn) => {
                 console.error("Action doesn't exist");
         }
     });
+});
+function handleMotion(evt) {
+    const shakeSensitivity = 3;
+
+    const x = evt.accelerationIncludingGravity.x;
+    const y = evt.accelerationIncludingGravity.y;
+    const z = evt.accelerationIncludingGravity.z;
+
+    const acceleration = Math.sqrt(x * x + y * y + z * z);
+
+    if (acceleration > shakeSensitivity) {
+        console.log("SHAKE!!!");
+        document.body.classList.add("hidden");
+    }
+}
+window.addEventListener("blur", () => {
+    document.body.classList.add("hidden");
 });

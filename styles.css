@@ -4,6 +4,19 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #333;
+    position: relative;
+
+    &.hidden::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: #333;
+        z-index: 500;
+    }
+}
+
 img {
     display: block;
     width: 100%;
