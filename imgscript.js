@@ -51,6 +51,7 @@ document.addEventListener("contextmenu", (e) => {
 
         data = data.replaceAll("wimg.", "www.");
         data = data.replaceAll("thumbnail", "sample");
+        data = data.replaceAll("/samples", "//samples");
         data = data.replaceAll("preview.", "i.");
 
         sendData(data);
