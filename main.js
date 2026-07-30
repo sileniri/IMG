@@ -67,7 +67,7 @@ contextMenuBtns.forEach((btn) => {
                 break;
             case "fullscreen":
                 if (!document.fullscreenElement) {
-                    document.body.requestFullscreen();
+                    document.documentElement.requestFullscreen();
                 } else {
                     document.exitFullscreen();
                 }
