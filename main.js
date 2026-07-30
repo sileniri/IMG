@@ -98,6 +98,7 @@ function handleMotion(evt) {
         document.body.classList.add("hidden");
     }
 }
+window.addEventListener("devicemotion", handleMotion);
 window.addEventListener("blur", () => {
     document.body.classList.add("hidden");
 });
