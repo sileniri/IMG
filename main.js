@@ -13,7 +13,9 @@ if (!location.hash) {
     if (!Array.isArray(imgs)) {
         imgs = JSON.parse(imgs);
     }
-    imgs.push(location.hash.substring(1));
+    if (!imgs.includes(location.hash)) {
+        imgs.push(location.hash.substring(1));
+    }
     console.log(imgs);
     localStorage.setItem("images", JSON.stringify(imgs));
 
@@ -27,13 +29,18 @@ function moveImg(from, to) {
     localStorage.setItem("images", JSON.stringify(imageArray));
     loadImages();
 }
+function delImg(index) {
+    const element = imageArray[index];
+    imageArray.splice(index, 1);
+    localStorage.setItem("images", JSON.stringify(imageArray));
+    loadImages();
+}
 
 function loadImages() {
     console.log("loading...");
     try {
-        if (!imageArray) {
-            imageArray = JSON.parse(localStorage.getItem("images"));
-        }
+        imageArray = JSON.parse(localStorage.getItem("images"));
+
         imgWrapper.innerHTML = "";
         imageArray.forEach((image) => {
             const imageSrc = image;
@@ -43,6 +50,7 @@ function loadImages() {
             const controls = document.createElement("div");
             const upBtn = document.createElement("button");
             const pinBtn = document.createElement("button");
+            const delBtn = document.createElement("button");
             const downBtn = document.createElement("button");
 
             div.setAttribute("style", `--_img: url(${imageSrc})`);
@@ -53,6 +61,8 @@ function loadImages() {
             upBtn.textContent = "arrow_upward";
             pinBtn.className = "pin-btn";
             pinBtn.textContent = "keep";
+            delBtn.className = "del-btn";
+            delBtn.textContent = "delete";
             downBtn.className = "down-btn";
             downBtn.textContent = "arrow_downward";
 
@@ -61,6 +71,7 @@ function loadImages() {
             controlsWrapper.appendChild(controls);
             controls.appendChild(upBtn);
             controls.appendChild(pinBtn);
+            controls.appendChild(delBtn);
             controls.appendChild(downBtn);
             div.appendChild(img);
 
@@ -73,6 +84,10 @@ function loadImages() {
                 const fromIndex = imageArray.indexOf(imageSrc);
                 const toIndex = 0;
                 moveImg(fromIndex, toIndex);
+            });
+            delBtn.addEventListener("click", (e) => {
+                const index = imageArray.indexOf(imageSrc);
+                delImg(fromIndex, toIndex);
             });
             downBtn.addEventListener("click", (e) => {
                 const fromIndex = imageArray.indexOf(imageSrc);
@@ -130,6 +145,10 @@ contextMenuBtns.forEach((btn) => {
                 break;
             case "horiScroll":
                 document.body.classList.toggle("horiScroll");
+                break;
+            case "reset":
+                localStorage.removeItem("images");
+                loadImages();
                 break;
             default:
                 console.error("Action doesn't exist");
