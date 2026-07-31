@@ -22,11 +22,57 @@ img {
     width: 100%;
 }
 
-div {
-    background-image: var(--_img);
-    background-size: 100%;
-    background-attachment: fixed;
-    background-position: center;
+.imgWrapper {
+    max-width: 50rem;
+    margin-inline: auto;
+    container-type: inline-size;
+
+    div:has(img) {
+        background-image: var(--_img);
+        background-size: 100%;
+        background-attachment: fixed;
+        background-position: center;
+        position: relative;
+
+        .controls-wrapper {
+            display: none;
+            position: absolute;
+            inset: 1rem;
+            left: calc(100cqw - var(--_control-width));
+
+            .controls {
+                --_control-width: 5rem;
+                position: sticky;
+                top: 1rem;
+                bottom: 1rem;
+
+                button {
+                    cursor: pointer;
+                    display: block;
+                    font-family: "Material Symbols Rounded";
+                    font-size: 2rem;
+                    color: #fff;
+                    width: 3rem;
+                    aspect-ratio: 1;
+                    outline: none;
+                    border: none;
+                    border-radius: 50%;
+                    background-color: #333;
+                    &:not(:last-child) {
+                        margin-bottom: 0.5rem;
+                    }
+                }
+            }
+        }
+
+        &:hover .controls-wrapper {
+            display: block;
+        }
+        &:first-child .up-btn,
+        &:last-child .down-btn {
+            color: #aaa !important;
+        }
+    }
 }
 
 .fixed img {
@@ -64,9 +110,4 @@ div {
             }
         }
     }
-}
-
-.imgWrapper {
-    max-width: 50rem;
-    margin-inline: auto;
 }

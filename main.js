@@ -20,22 +20,70 @@ if (!location.hash) {
     window.open("", "_self").close();
 }
 
+function moveImg(from, to) {
+    const element = imageArray[from];
+    imageArray.splice(from, 1);
+    imageArray.splice(to, 0, element);
+    localStorage.setItem("images", JSON.stringify(imageArray));
+    loadImages();
+}
+
 function loadImages() {
     console.log("loading...");
     try {
-        imageArray = JSON.parse(localStorage.getItem("images"));
+        if (!imageArray) {
+            imageArray = JSON.parse(localStorage.getItem("images"));
+        }
+        imgWrapper.innerHTML = "";
         imageArray.forEach((image) => {
             const imageSrc = image;
             const div = document.createElement("div");
             const img = document.createElement("img");
+            const controlsWrapper = document.createElement("div");
+            const controls = document.createElement("div");
+            const upBtn = document.createElement("button");
+            const pinBtn = document.createElement("button");
+            const downBtn = document.createElement("button");
+
             div.setAttribute("style", `--_img: url(${imageSrc})`);
             img.src = imageSrc;
+            controlsWrapper.className = "controls-wrapper";
+            controls.className = "controls";
+            upBtn.className = "up-btn";
+            upBtn.textContent = "arrow_upward";
+            pinBtn.className = "pin-btn";
+            pinBtn.textContent = "keep";
+            downBtn.className = "down-btn";
+            downBtn.textContent = "arrow_downward";
+
             imgWrapper.appendChild(div);
+            div.appendChild(controlsWrapper);
+            controlsWrapper.appendChild(controls);
+            controls.appendChild(upBtn);
+            controls.appendChild(pinBtn);
+            controls.appendChild(downBtn);
             div.appendChild(img);
+
+            upBtn.addEventListener("click", (e) => {
+                const fromIndex = imageArray.indexOf(imageSrc);
+                const toIndex = fromIndex - 1 > 0 ? fromIndex - 1 : 0;
+                moveImg(fromIndex, toIndex);
+            });
+            pinBtn.addEventListener("click", (e) => {
+                const fromIndex = imageArray.indexOf(imageSrc);
+                const toIndex = 0;
+                moveImg(fromIndex, toIndex);
+            });
+            downBtn.addEventListener("click", (e) => {
+                const fromIndex = imageArray.indexOf(imageSrc);
+                const toIndex = fromIndex + 1 < imageArray.length ? fromIndex + 1 : imageArray.length;
+                moveImg(fromIndex, toIndex);
+            });
         });
     } catch (err) {
         console.error(err);
     }
+    console.log("Succesfully loaded images");
 }
 
 document.addEventListener("contextmenu", (e) => {
@@ -59,8 +107,12 @@ contextMenuBtns.forEach((btn) => {
     console.log(btn.dataset.action);
     btn.addEventListener("click", (e) => {
         switch (btn.dataset.action) {
+            case "reload":
+                loadImages();
+                break;
             case "visibility":
                 document.body.classList.toggle("hidden");
+                sessionStorage.setItem("hidden", document.body.classList.contains("hidden"));
                 break;
             case "scrollTop":
                 window.scrollTo(0, 0);
@@ -101,4 +153,8 @@ function handleMotion(evt) {
 window.addEventListener("devicemotion", handleMotion);
 window.addEventListener("blur", () => {
     document.body.classList.add("hidden");
+});
+window.addEventListener("focus", () => {
+    const hidden = sessionStorage.getItem("hidden");
+    hidden === "false" ? document.body.classList.remove("hidden") : document.body.classList.add("hidden");
 });

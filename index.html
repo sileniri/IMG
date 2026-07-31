@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>IMG</title>
 
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_downward,arrow_upward,keep"
+        />
         <link rel="stylesheet" href="styles.css" />
 
         <script defer type="module" src="main.js"></script>
@@ -12,11 +16,12 @@
     <body class="hidden">
         <div class="context-menu" id="contextMenu">
             <ul>
+                <li><a href="#" data-action="reload">Reload images</a></li>
                 <li><a href="#" data-action="visibility">Toggle visibility</a></li>
                 <li><a href="#" data-action="scrollTop">Scroll to top</a></li>
                 <li><a href="#" data-action="fullscreen">Toggle fullscreen</a></li>
                 <li><a href="#" data-action="fixedView">Toggle fixed view</a></li>
-                <li><a href="#" data-action="horiScroll">Toggle Horizontal scrolling</a></li>
+                <li><a href="#" data-action="horiScroll">Toggle horizontal scrolling</a></li>
             </ul>
         </div>
         <div class="imgWrapper"></div>
