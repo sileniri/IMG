@@ -87,7 +87,7 @@ function loadImages() {
             });
             delBtn.addEventListener("click", (e) => {
                 const index = imageArray.indexOf(imageSrc);
-                delImg(fromIndex, toIndex);
+                delImg(index);
             });
             downBtn.addEventListener("click", (e) => {
                 const fromIndex = imageArray.indexOf(imageSrc);
