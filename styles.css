@@ -31,12 +31,11 @@ img {
 
 .imgWrapper {
     width: 100svw;
-    /* max-width: 50rem; */
+    max-width: 50rem;
     margin-inline: auto;
-    /* container-type: inline-size; */
+    container-type: inline-size;
 
     div:has(img) {
-        display: inline-block;
         background-image: var(--_img);
         background-size: 100%;
         background-attachment: fixed;

@@ -42,9 +42,10 @@ window.addEventListener("scroll", (e) => {
     const newScroll = document.documentElement.scrollTop || document.body.scrollTop;
     if (newScroll < scrollOffset + threshold && newScroll > scrollOffset - threshold) {
         scrollOffset = newScroll;
+    } else {
+        window.scrollTo(0, scrollOffset);
     }
     console.log(newScroll, scrollOffset);
-    window.scrollTo(0, scrollOffset);
 });
 
 function loadImages() {
