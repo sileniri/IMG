@@ -2,6 +2,7 @@ let imageArray;
 const contextMenu = document.querySelector("#contextMenu");
 const contextMenuBtns = [...contextMenu.querySelectorAll("a")];
 const imgWrapper = document.querySelector(".imgWrapper");
+let scrollOffset = document.documentElement.scrollTop || document.body.scrollTop;
 
 if (!location.hash) {
     loadImages();
@@ -35,6 +36,16 @@ function delImg(index) {
     localStorage.setItem("images", JSON.stringify(imageArray));
     loadImages();
 }
+
+window.addEventListener("scroll", (e) => {
+    const threshold = 200;
+    const newScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    if (newScroll < scrollOffset + threshold && newScroll > scrollOffset - threshold) {
+        scrollOffset = newScroll;
+    }
+    console.log(newScroll, scrollOffset);
+    window.scrollTo(0, scrollOffset);
+});
 
 function loadImages() {
     console.log("loading...");
@@ -99,6 +110,10 @@ function loadImages() {
         console.error(err);
     }
     console.log("Succesfully loaded images");
+
+    // console.log("scrollTo:", 0, ",", scrollOffset);
+
+    // window.scrollTo(0, scrollOffset);
 }
 
 document.addEventListener("contextmenu", (e) => {
@@ -130,6 +145,7 @@ contextMenuBtns.forEach((btn) => {
                 sessionStorage.setItem("hidden", document.body.classList.contains("hidden"));
                 break;
             case "scrollTop":
+                scrollOffset = 0;
                 window.scrollTo(0, 0);
                 break;
             case "fullscreen":
@@ -143,16 +159,17 @@ contextMenuBtns.forEach((btn) => {
             case "fixedView":
                 document.body.classList.toggle("fixed");
                 break;
-            case "horiScroll":
-                document.body.classList.toggle("horiScroll");
-                break;
+            // case "horiScroll":
+            //     document.body.classList.toggle("horiScroll");
+            //     break;
             case "reset":
                 localStorage.removeItem("images");
                 loadImages();
                 break;
             default:
-                console.error("Action doesn't exist");
+                console.error("Action doesn't exist, or hasn't been implemented yet");
         }
+        // console.log(0, scrollOffset);
     });
 });
 function handleMotion(evt) {
