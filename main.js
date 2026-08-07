@@ -192,6 +192,7 @@ window.addEventListener("blur", () => {
     document.body.classList.add("hidden");
 });
 window.addEventListener("focus", () => {
+    loadImages();
     const hidden = sessionStorage.getItem("hidden");
     hidden === "false" ? document.body.classList.remove("hidden") : document.body.classList.add("hidden");
 });
