@@ -31,10 +31,12 @@ function moveImg(from, to) {
     loadImages();
 }
 function delImg(index) {
-    const element = imageArray[index];
-    imageArray.splice(index, 1);
-    localStorage.setItem("images", JSON.stringify(imageArray));
-    loadImages();
+    if (window.confirm("Do you want to remove this image?")) {
+        const element = imageArray[index];
+        imageArray.splice(index, 1);
+        localStorage.setItem("images", JSON.stringify(imageArray));
+        loadImages();
+    }
 }
 
 window.addEventListener("scroll", (e) => {
@@ -191,8 +193,8 @@ window.addEventListener("devicemotion", handleMotion);
 window.addEventListener("blur", () => {
     document.body.classList.add("hidden");
 });
-window.addEventListener("focus", () => {
-    loadImages();
-    const hidden = sessionStorage.getItem("hidden");
-    hidden === "false" ? document.body.classList.remove("hidden") : document.body.classList.add("hidden");
-});
+// window.addEventListener("focus", () => {
+//     loadImages();
+//     const hidden = sessionStorage.getItem("hidden");
+//     hidden === "false" ? document.body.classList.remove("hidden") : document.body.classList.add("hidden");
+// });
