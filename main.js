@@ -40,7 +40,9 @@ function delImg(index) {
         localStorage.setItem("images", JSON.stringify(imageArray));
         loadImages();
     }
-    visiblePopup = false;
+    setTimeout(() => {
+        visiblePopup = false;
+    }, 100);
 }
 
 window.addEventListener("scroll", (e) => {
@@ -195,6 +197,8 @@ function handleMotion(evt) {
 }
 window.addEventListener("devicemotion", handleMotion);
 window.addEventListener("blur", () => {
+    console.log(visiblePopup);
+
     if (!visiblePopup) {
         document.body.classList.add("hidden");
     }
