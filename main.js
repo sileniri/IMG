@@ -4,6 +4,8 @@ const contextMenuBtns = [...contextMenu.querySelectorAll("a")];
 const imgWrapper = document.querySelector(".imgWrapper");
 let scrollOffset = document.documentElement.scrollTop || document.body.scrollTop;
 
+let visiblePopup = false;
+
 if (!location.hash) {
     loadImages();
 } else {
@@ -31,12 +33,14 @@ function moveImg(from, to) {
     loadImages();
 }
 function delImg(index) {
+    visiblePopup = true;
     if (window.confirm("Do you want to remove this image?")) {
         const element = imageArray[index];
         imageArray.splice(index, 1);
         localStorage.setItem("images", JSON.stringify(imageArray));
         loadImages();
     }
+    visiblePopup = false;
 }
 
 window.addEventListener("scroll", (e) => {
@@ -191,7 +195,9 @@ function handleMotion(evt) {
 }
 window.addEventListener("devicemotion", handleMotion);
 window.addEventListener("blur", () => {
-    document.body.classList.add("hidden");
+    if (!visiblePopup) {
+        document.body.classList.add("hidden");
+    }
 });
 // window.addEventListener("focus", () => {
 //     loadImages();
