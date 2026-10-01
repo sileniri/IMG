@@ -19,7 +19,7 @@ if (imageElem) {
 
     sendData(data);
 
-    console.log(e, data);
+    console.log(data);
 }
 
 function sendData(data) {
