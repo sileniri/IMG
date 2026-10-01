@@ -142,6 +142,33 @@ document.addEventListener("click", (e) => {
     }
 });
 
+function exportImages() {
+    console.log("Encoding...");
+
+    const exportedImgs = imageArray.join(",");
+    // const encodedImgs = Buffer.from(exportedImgs).to("base64");
+    const encodedImgs = btoa(exportedImgs);
+
+    // Encode the String
+    // const encodedImgs = Base64.encode(exportedImgs);
+
+    navigator.clipboard.writeText(encodedImgs);
+
+    console.log("Copied to clipboard");
+}
+
+function importImages() {
+    // Decode the String
+    const encodedString = prompt("Paste code:");
+    // const decodedString = Base64.decode(encodedString);
+    const decodedString = atob(encodedString);
+
+    const decodedArray = decodedString.split(",");
+    console.log(decodedArray); // Output
+    localStorage.setItem("images", JSON.stringify(decodedArray));
+    loadImages();
+}
+
 contextMenuBtns.forEach((btn) => {
     console.log(btn.dataset.action);
     btn.addEventListener("click", (e) => {
@@ -165,15 +192,21 @@ contextMenuBtns.forEach((btn) => {
                 }
                 document.body;
                 break;
-            case "fixedView":
-                document.body.classList.toggle("fixed");
-                break;
+            // case "fixedView":
+            //     document.body.classList.toggle("fixed");
+            //     break;
             // case "horiScroll":
             //     document.body.classList.toggle("horiScroll");
             //     break;
             case "reset":
                 localStorage.removeItem("images");
                 loadImages();
+                break;
+            case "export":
+                exportImages();
+                break;
+            case "import":
+                importImages();
                 break;
             default:
                 console.error("Action doesn't exist, or hasn't been implemented yet");
@@ -203,8 +236,8 @@ window.addEventListener("blur", () => {
         document.body.classList.add("hidden");
     }
 });
-// window.addEventListener("focus", () => {
-//     loadImages();
-//     const hidden = sessionStorage.getItem("hidden");
-//     hidden === "false" ? document.body.classList.remove("hidden") : document.body.classList.add("hidden");
-// });
+window.addEventListener("focus", () => {
+    loadImages();
+    // const hidden = sessionStorage.getItem("hidden");
+    // hidden === "false" ? document.body.classList.remove("hidden") : document.body.classList.add("hidden");
+});
