@@ -48,9 +48,15 @@ function delImg(index) {
 window.addEventListener("scroll", (e) => {
     const threshold = 200;
     const newScroll = document.documentElement.scrollTop || document.body.scrollTop;
-    if (newScroll < scrollOffset + threshold && newScroll > scrollOffset - threshold) {
+    // if (newScroll < scrollOffset + threshold && newScroll > scrollOffset - threshold) {
+    // console.log(`${scrollOffset - threshold} < ${newScroll} = ${scrollOffset - threshold < newScroll}`);
+
+    if (newScroll !== 0) {
+        scrollOffset = newScroll;
+    } else if (scrollOffset === 0.5) {
         scrollOffset = newScroll;
     } else {
+        console.log("TO ZERO");
         window.scrollTo(0, scrollOffset);
     }
     console.log(newScroll, scrollOffset);
